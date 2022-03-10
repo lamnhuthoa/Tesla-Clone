@@ -3,13 +3,15 @@ import styled from 'styled-components';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import { selectCars } from '../features/car/carSlice';
+import { selectSolars } from '../features/solar/solarSlice';
 import { useSelector } from 'react-redux';
 
 function Header() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const cars = useSelector(selectCars);
+  const solars = useSelector(selectSolars);
   console.log(cars);
-
+  console.log(solars);
   return (
     <Container>
       <a>
@@ -18,6 +20,9 @@ function Header() {
       <Menu>
         {cars && cars.map((car, index) => (
           <a key={index} href="#">{car}</a>
+        ))}
+        {solars && solars.map((solar, index) => (
+          <a key={index} href="#">{solar}</a>
         ))}
       </Menu>
       <RightMenu>
@@ -31,6 +36,9 @@ function Header() {
         </CloseWrapper>
         {cars && cars.map((car, index) => (
           <li key={index}><a href="#">{car}</a></li>
+        ))}
+        {solars && solars.map((solar, index) => (
+          <li key={index}><a href="#">{solar}</a></li>
         ))}
         <li><a href="#">Existing Inventory</a></li>
         <li><a href="#">Used Inventory</a></li>
